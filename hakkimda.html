@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehmet Efe Ergin</title>
     <style>
         body {
             text-align: center; /* Tüm içeriği ortala */
@@ -65,6 +62,9 @@
             margin-bottom: 5px;
         }
     </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımda</title>
 </head>
 <body>
     <div id="solMenu">
@@ -74,56 +74,22 @@
             <li><a href="iletisim.html">İletişim</a></li>
         </ul>
     </div>
+    <!-- Menüyü açan buton -->
     <div id="menuBtn">
         <span></span>
         <span></span>
         <span></span>
     </div>
     <header>
-        <h1>Hoş Geldiniz!</h1>
-        <img src="ben.jpg" alt="Hoş Geldiniz Resmi">
+        <h1>Hakkımda</h1>
     </header>
-    <nav>
-        <ul>
-            
-        </ul>
-    </nav>
     <main>
-        <section>
-            <h2>Hakkımda</h2>
-            <p>Ben Mehmet Efe Ergin, OSTİM Teknik Üniversitesinde</p>
-            <p>Bilgisayar Mühendisliği 2. sınıf öğrencisiyim</p>
-        </section>
-        <section>
-            <h2>Neden bu sitedeyiz?</h2>
-            <p>Ne yalan söyleyim bu site tamamen benim harçlık almam için</p>
-            <p>Belki nakit yoktur yanında, bende de pos cihazı yok o yüzden böyle bir yöntem buldum</p>
-            <p>Eğer bana harçlık vermek istiyorsanız aşağıdaki IBAN'a atabilirsiniz.</p>
-            <p> Bu yaratıclık harçlığı hak ediyor, Gönlünüzden ne koparsa</p>
-        </section>
-        <section>
-            <h2>IBAN'ım</h2>
-            <div id="cerceve">
-            <p>Mehmet Efe Ergin</p>
-            <p id="kopyaYazi">TR34 0001 5001 5800 7314 7656 44</p>
-            <button onclick="kopyala()">IBAN'ı Kopyala</button>
-        </div>
-        </section>
+        <p>Ben Mehmet Efe Ergin bu kısım cv'mi görmek için</p>
+        <a href="mefecv.pdf" target="_blank">CV'mi görmek için tıkla</a>
+        <button onclick="indirPDF()">PDF'i İndir</button>
     </main>
-    <footer>
-        <p>Telif Hakkı © 2024 Mehmet Efe Ergin. Tüm Hakları Saklıdır.</p>
-        <p>I'm hosted with GitHub Pages.</p>
-    </footer>
 
     <script>
-        function kopyala() {
-            var metin = document.getElementById("kopyaYazi").innerText;
-            navigator.clipboard.writeText(metin).then(function() {
-                alert("Eyvallah hocam!");
-            }, function(err) {
-                console.error('Metin kopyalanırken hata oluştu: ', err);
-            });
-        }
         var menuBtn = document.getElementById('menuBtn');
         var solMenu = document.getElementById('solMenu');
 
@@ -140,6 +106,14 @@
                 solMenu.style.left = '-250px';
             }
         });
+        function indirPDF() {
+            var link = document.createElement('a');
+            link.href = 'dosya.pdf'; // PDF dosyasının URL'si
+            link.download = 'dosya.pdf'; // İndirilen dosyanın adı
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
