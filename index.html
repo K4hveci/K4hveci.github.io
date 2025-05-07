@@ -45,6 +45,21 @@
             100% { background-position: 0% 50%; }
         }
 
+        #playButton {
+            padding: 14px 28px;
+            font-size: 20px;
+            background-color: #eca17a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        #playButton:hover {
+            background-color: #a682b0;
+        }
+
         #spotify-embed {
             width: 300px;
             height: 380px;
@@ -114,9 +129,12 @@
     <!-- Geri Sayım Başlığı ve Sayacı -->
     <h1>Countdown to GTA VI</h1>
     <div id="countdown">Yükleniyor...</div>
+    <button id="playButton">🎵 Start GTA VI mode</button>
+    <audio id="mySong" src="https://open.spotify.com/intl-tr/track/4PJEK76V3A1S0XzZJuTWh7?si=3a7918fbd2ef487d"></audio>
+
 
     <!-- Spotify Başlığı ve Embed -->
-    <h1>Enjoy a Random song from my Favourites</h1>
+    <h1> or Enjoy a Random song from my Favourites</h1>
     <iframe id="spotify-embed" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
     <!-- Profil Fotoğrafı ve Spotify Linki -->
@@ -171,6 +189,15 @@
         // Rastgele Arka Plan Rengi
         const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
         document.body.style.backgroundColor = randomColor;
+
+        document.getElementById("playButton").addEventListener("click", function() {
+    
+            const audio = document.getElementById("mySong");
+            audio.play().catch(e => {
+            alert("Şarkı çalınamadı: Tarayıcı izin vermedi veya dosya bulunamadı.");
+            console.error(e);
+            });
+        });
     </script>
 </body>
 </html>
