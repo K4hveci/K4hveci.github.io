@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +13,70 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Titillium Web', sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url('arkaplan.png'); /* BU SATIRI GÜNCELLE: kendi resim yolunu buraya koy */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
+
+        h1 {
+            font-family: 'Titillium Web', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        #countdown {
+            margin-top: 20px;
+            padding: 20px 30px;
+            font-size: 24px;
+            color: white;
+            border-radius: 15px;
+            background: linear-gradient(90deg, #c66461, #eca17a, #a682b0, #c97245, #b87274);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #spotify-embed {
             width: 300px;
             height: 380px;
             border: none;
+            border-radius: 12px;
+            margin-top: 20px;
         }
+
         .spotify-link .btn {
             display: inline-block;
             padding: 12px 24px;
             font-size: 16px;
             color: #fff;
-            background-color: #1DB954; /* Spotify yeşili */
-            text-align: center;
+            background-color: #1DB954;
             text-decoration: none;
             border-radius: 25px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s, box-shadow 0.3s;
+            margin-top: 15px;
         }
 
         .spotify-link .btn:hover {
             background-color: #1aa34a;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
+
         .github-corner {
             position: absolute;
             top: 0;
             right: 0;
         }
+
         .github-corner svg {
             fill: #151513;
             color: #fff;
@@ -50,21 +85,17 @@
             border: 0;
             right: 0;
         }
+
         .github-profile-pic {
             margin-top: 20px;
             width: 100px;
             height: 100px;
             border-radius: 50%;
         }
-        .spotify-link {
-            margin-top: 20px;
-        }
-        h1 {
-            font-family: 'Titillium Web', sans-serif; /* Titillium Web fontunu buraya yaz */
-        }
     </style>
 </head>
 <body>
+    <!-- GitHub Köşesi -->
     <a href="https://github.com/K4hveci" class="github-corner" aria-label="View source on GitHub">
         <div class="version">
             <div class="demo version-section"><a href="#" class="github-corner" aria-label="View source on GitHub">
@@ -79,16 +110,48 @@
             </div>
           </div>
     </a>
+
+    <!-- Geri Sayım Başlığı ve Sayacı -->
+    <h1>Countdown to GTA VI</h1>
+    <div id="countdown">Yükleniyor...</div>
+
+    <!-- Spotify Başlığı ve Embed -->
     <h1>Enjoy a Random song from my Favourites</h1>
-    <iframe id="spotify-embed" style="border-radius:12px" src="" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    
+    <iframe id="spotify-embed" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+    <!-- Profil Fotoğrafı ve Spotify Linki -->
     <img class="github-profile-pic" src="https://github.com/K4hveci.png" alt="GitHub Profile Picture">
     <div class="spotify-link">
         <a href="https://open.spotify.com/playlist/6HumH8syTcxOGaCqXxAvuW?si=8b231762a32d4a92" target="_blank" class="btn">Open Full Spotify Playlist</a>
     </div>
 
+    <!-- JavaScript: Geri Sayım ve Spotify Şarkı Seçimi -->
     <script>
-        // Spotify playlist tracks
+        // Geri Sayım
+        const countdownElement = document.getElementById("countdown");
+        const targetDate = new Date("2026-05-26T00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "Süre doldu!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Rastgele Spotify Parçası
         const tracks = [
             "https://open.spotify.com/embed/track/6UaQ1vxrYGTQkghREuU1o2?si=acdacbde007f4338",
             "https://open.spotify.com/embed/track/0uAkm1iQLrzweZ4U1iXy6w?si=e73bc783065643e6",
@@ -97,19 +160,16 @@
             "https://open.spotify.com/embed/track/03sf6gnuqZNE9sGrRi8WAc?si=ab940f57572d4b7d",
             "https://open.spotify.com/embed/track/6VDbIjLQx6DnRZ3lpmv9sy?si=646b14e4bb66409a",
             "https://open.spotify.com/embed/track/1suQvk6hNvqzpekicmvYOO?si=e694b687240249de"
-            // Add more track URLs here
         ];
 
-        // Function to get a random track URL
         function getRandomTrack() {
             return tracks[Math.floor(Math.random() * tracks.length)];
         }
 
-        // Set random track to iframe src
         document.getElementById("spotify-embed").src = getRandomTrack();
 
-        // Set random background color
-        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        // Rastgele Arka Plan Rengi
+        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
         document.body.style.backgroundColor = randomColor;
     </script>
 </body>
