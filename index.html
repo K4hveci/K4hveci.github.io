@@ -6,6 +6,12 @@
     <title>Welcome To My Cool Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'GTAArtDeco';
+            src: url('GTA Art Deco - Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
             display: flex;
             flex-direction: column;
@@ -13,7 +19,7 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Titillium Web', sans-serif;
+            font-family: 'GTAArtDeco', sans-serif;
             text-align: center;
             padding: 20px;
             background-image: url('arkaplan.png'); /* BU SATIRI GÜNCELLE: kendi resim yolunu buraya koy */
@@ -23,8 +29,16 @@
         }
 
         h1 {
-            font-family: 'Titillium Web', sans-serif;
+            font-family: 'GTAArtDeco', sans-serif;
             margin-bottom: 10px;
+            font-size: 48px;
+            color: white;
+            letter-spacing: 10px;
+            text-align: center;
+            text-shadow:
+                0 0 5px #b073ff,
+                0 0 10px #b073ff,
+                0 0 20px #b073ff;
         }
 
         #countdown {
