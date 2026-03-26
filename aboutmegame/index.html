@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - The Card Game</title>
+    
+    <!-- Phosphor Icons for high quality SVGs -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="table">
+        <!-- Main title text that fades out or sits gracefully -->
+        <div class="title-container">
+            <h1>About Me</h1>
+            <p>Draw from the deck to reveal more.</p>
+        </div>
+
+        <div id="game-board" class="game-board">
+            
+            <!-- The clickable deck visual (just the back cover of the top card on the pile) -->
+            <div id="deck" class="deck deck-pulse">
+                <div class="deck-inner">
+                    <div class="deck-pattern"></div>
+                </div>
+                <div class="deck-label">Click to Draw</div>
+            </div>
+
+            <!-- The generated cards that will fly out -->
+            <div id="cards-container" class="cards-container">
+                <!-- Card 1: Github -->
+                <a class="card github-card" href="https://github.com/K4hveci" target="_blank">
+                    <div class="card-inner">
+                        <div class="card-back">
+                            <div class="deck-pattern"></div>
+                        </div>
+                        <div class="card-face">
+                            <i class="ph ph-github-logo"></i>
+                            <h3>GitHub</h3>
+                            <p>Check out my repositories and code</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: CV -->
+                <a class="card cv-card" href="resume.pdf" target="_blank">
+                    <div class="card-inner">
+                        <div class="card-back">
+                            <div class="deck-pattern"></div>
+                        </div>
+                        <div class="card-face">
+                            <i class="ph ph-file-pdf"></i>
+                            <h3>Resume</h3>
+                            <p>Download my professional CV</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Contact -->
+                <a class="card contact-card" href="mailto:mefergin@gmail.com">
+                    <div class="card-inner">
+                        <div class="card-back">
+                            <div class="deck-pattern"></div>
+                        </div>
+                        <div class="card-face">
+                            <i class="ph ph-envelope-simple"></i>
+                            <h3>Contact</h3>
+                            <p>mefergin@gmail.com</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: WIP -->
+                <a class="card wip-card" href="#">
+                    <div class="card-inner">
+                        <div class="card-back">
+                            <div class="deck-pattern"></div>
+                        </div>
+                        <div class="card-face">
+                            <i class="ph ph-wrench"></i>
+                            <h3>Work In Progress</h3>
+                            <p>More content coming soon</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5: WIP -->
+                <a class="card wip-card" href="#">
+                    <div class="card-inner">
+                        <div class="card-back">
+                            <div class="deck-pattern"></div>
+                        </div>
+                        <div class="card-face">
+                            <i class="ph ph-lock-key"></i>
+                            <h3>Work In Progress</h3>
+                            <p>Locked feature</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Canvas for subtle confetti/particle effects (optional polish) -->
+    <canvas id="particles-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
