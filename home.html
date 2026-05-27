@@ -1,207 +1,1420 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome To My Cool Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
+    <title>K4HVECI // ARCHIVE</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Share+Tech+Mono&family=VT323&display=swap"
+        rel="stylesheet">
     <style>
+        /* RISO PUNK DESIGN SYSTEM */
         @font-face {
             font-family: 'GTAArtDeco';
             src: url('GTA Art Deco - Regular.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
+
+        :root {
+            --bg-dark: #070908;
+            --bg-panel: #0f1311;
+            --riso-green: #00FF66;
+            --riso-green-dim: #00cc52;
+            --riso-pink: #FF007F;
+            --riso-orange: #FF5E00;
+            --riso-yellow: #FFEA00;
+            --paper-cream: #f6f1e3;
+            --text-light: #f6f1e3;
+            --text-dark: #070908;
+            --border-width: 3px;
+            --punk-shadow-pink: 6px 6px 0px var(--riso-pink);
+            --punk-shadow-green: 6px 6px 0px var(--riso-green);
+            --punk-shadow-dark: 6px 6px 0px var(--bg-dark);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+            border-left: var(--border-width) solid var(--riso-green);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--riso-green);
+            border: 2px solid var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--riso-pink);
+        }
+
         body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 30px 15px;
+        }
+
+        /* GRAIN OVERLAY */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* HALFTONE TEXTURE BACKGROUND */
+        .halftone-bg {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(rgba(0, 255, 102, 0.05) 15%, transparent 16%);
+            background-size: 10px 10px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                grid-template-columns: 320px 1fr;
+                align-items: start;
+            }
+        }
+
+        /* HEADER SECTION */
+        header {
+            grid-column: 1 / -1;
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--bg-panel);
+            padding: 30px;
+            position: relative;
+            box-shadow: var(--punk-shadow-pink);
+            margin-bottom: 10px;
+            transform: rotate(-0.5deg);
+        }
+
+        header::before {
+            content: "SYSTEM // LIVE";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--riso-green);
+            color: var(--text-dark);
+            padding: 2px 8px;
+            font-size: 11px;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: bold;
+            border: 2px solid var(--bg-dark);
+        }
+
+        .header-title-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1.site-title {
+            font-family: 'GTAArtDeco', sans-serif;
+            font-size: clamp(32px, 6vw, 64px);
+            color: var(--riso-green);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px var(--riso-pink);
+            line-height: 1;
+        }
+
+        .site-subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            color: var(--riso-pink);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: rgba(255, 0, 127, 0.1);
+            padding: 4px 8px;
+            border: 1px dashed var(--riso-pink);
+        }
+
+        /* SIDEBAR PROFILE */
+        .sidebar {
             display: flex;
             flex-direction: column;
+            gap: 30px;
+        }
+
+        .profile-card {
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--bg-panel);
+            padding: 20px;
+            position: relative;
+            box-shadow: var(--punk-shadow-pink);
+            transform: rotate(0.8deg);
+        }
+
+        .profile-card::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--riso-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--riso-green);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .profile-pic-container {
+            width: 100%;
+            height: 220px;
+            border: 2px solid var(--riso-green);
+            background: #151a17;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'GTAArtDeco', sans-serif;
-            text-align: center;
-            padding: 20px;
-            background-image: url('arkaplan.png'); /* BU SATIRI GÜNCELLE: kendi resim yolunu buraya koy */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
-        h1 {
-            font-family: 'GTAArtDeco', sans-serif;
-            margin-bottom: 10px;
-            font-size: 48px;
-            color: white;
-            letter-spacing: 10px;
-            text-align: center;
-            text-shadow:
-                0 0 5px #b073ff,
-                0 0 10px #b073ff,
-                0 0 20px #b073ff;
+        .profile-pic {
+            width: calc(100% - 16px);
+            height: calc(100% - 16px);
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.5) brightness(0.9);
+            border: 2px solid var(--riso-pink);
         }
 
-        #countdown {
-            margin-top: 20px;
-            padding: 20px 30px;
+        /* Stamp or badge effect inside profile picture container */
+        .profile-stamp {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: var(--riso-yellow);
+            color: var(--text-dark);
+            font-family: 'Share Tech Mono', monospace;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transform: rotate(-10deg);
+            border: 1px solid var(--text-dark);
+            z-index: 2;
+            transition: all 0.15s ease;
+        }
+
+        /* HAZARD DECORATIVE TAPE */
+        .hazard-tape {
+            background: repeating-linear-gradient(-45deg,
+                    var(--riso-yellow),
+                    var(--riso-yellow) 15px,
+                    var(--bg-dark) 15px,
+                    var(--bg-dark) 30px);
+            height: 16px;
+            width: 100%;
+            border: 2px solid var(--text-dark);
+            margin-bottom: 25px;
+            box-shadow: 4px 4px 0px var(--riso-pink);
+            grid-column: 1 / -1;
+        }
+
+        /* FLOATING COLLAGE STICKERS */
+        .decal-sticker {
+            position: absolute;
+            background: var(--riso-pink);
+            color: var(--text-light);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 6px 12px;
+            border: var(--border-width) solid var(--text-dark);
+            transform: rotate(-8deg);
+            z-index: 50;
+            box-shadow: 4px 4px 0px var(--riso-yellow);
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .decal-sticker.d1 {
+            top: 40px;
+            right: 20px;
+            background: var(--riso-orange);
+            transform: rotate(4deg);
+        }
+
+        .decal-sticker.d2 {
+            bottom: 80px;
+            left: 20px;
+            background: var(--riso-pink);
+            transform: rotate(-10deg);
+            box-shadow: 4px 4px 0px var(--riso-green);
+        }
+
+        /* DIGITAL CLOCK / COUNTDOWN WIDGET */
+        .system-clock-widget {
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--bg-panel);
+            padding: 15px;
+            font-family: 'VT323', monospace;
+            color: var(--riso-green);
+            box-shadow: var(--punk-shadow-pink);
+            position: relative;
+            transform: rotate(-0.5deg);
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .system-clock-widget:hover {
+            transform: rotate(0.5deg) scale(1.02);
+            box-shadow: 6px 6px 0px var(--riso-yellow);
+        }
+
+        .system-clock-widget .widget-header {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            background: var(--riso-green);
+            color: var(--text-dark);
+            align-self: flex-start;
+            padding: 2px 6px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .clock-display {
+            font-size: 38px;
+            text-align: center;
+            line-height: 1;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+        }
+
+        .countdown-display {
+            font-size: 22px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: var(--riso-yellow);
+            text-shadow: 0 0 6px rgba(255, 234, 0, 0.5);
+            font-family: 'VT323', monospace;
+        }
+
+        .clock-label {
+            font-size: 10px;
+            text-align: center;
+            opacity: 0.8;
+            font-family: 'Share Tech Mono', monospace;
+            margin-top: 5px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        /* EASTER EGG CORRUPTION STYLE */
+        body.glitch-active {
+            filter: invert(0.95) hue-rotate(180deg) contrast(1.2);
+        }
+
+        body.glitch-active::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 6px 100%;
+            z-index: 99999;
+            pointer-events: none;
+        }
+
+        .critical-alert-banner {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--riso-pink);
+            color: var(--text-light);
+            border: 3px solid var(--text-dark);
+            padding: 15px 25px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 100000;
+            box-shadow: 6px 6px 0px var(--riso-yellow);
+            animation: pop-up 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+        }
+
+        .critical-alert-banner.fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        @keyframes pop-up {
+            from {
+                transform: translateY(50px) scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .profile-name {
+            font-family: 'GTAArtDeco', sans-serif;
             font-size: 24px;
-            color: white;
-            border-radius: 15px;
-            background: linear-gradient(90deg, #c66461, #eca17a, #a682b0, #c97245, #b87274);
-            background-size: 300% 300%;
-            animation: gradientShift 10s ease infinite;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: var(--riso-green);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .profile-bio {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--paper-cream);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            opacity: 0.95;
+            animation: soft-pulse-red 3s ease-in-out infinite;
         }
 
-        #playButton {
-            padding: 14px 28px;
-            font-size: 20px;
-            background-color: #eca17a;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        #playButton:hover {
-            background-color: #a682b0;
+        @keyframes soft-pulse-red {
+            0%, 100% {
+                color: var(--paper-cream);
+            }
+            50% {
+                color: #ff453a;
+                text-shadow: 0 0 4px rgba(255, 69, 58, 0.4);
+            }
         }
 
-        #aboutMeButton {
-            display: inline-block;
-            padding: 14px 28px;
-            font-size: 20px;
-            background-color: #a682b0;
-            color: white;
-            border: none;
+        .social-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
             text-decoration: none;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid var(--riso-green);
+            background: transparent;
+            color: var(--riso-green);
+            transition: all 0.2s ease;
         }
-        #aboutMeButton:hover {
-            background-color: #c66461;
+
+        .social-btn:hover {
+            background: var(--riso-green);
+            color: var(--text-dark);
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.linkedin {
+            border-color: var(--riso-pink);
+            color: var(--riso-pink);
+        }
+
+        .social-btn.linkedin:hover {
+            background: var(--riso-pink);
+            color: var(--text-light);
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+        }
+
+        .about-game-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: var(--border-width) solid var(--riso-yellow);
+            background: var(--riso-yellow);
+            color: var(--text-dark);
+            box-shadow: 4px 4px 0px var(--bg-dark);
+            margin-top: 15px;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .about-game-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--riso-pink);
+            background: #e5d200;
+        }
+
+        .about-game-btn .icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* MUSIC WIDGET (CASSETTE BOX) */
+        .music-widget {
+            border: var(--border-width) solid var(--riso-pink);
+            background: var(--bg-panel);
+            padding: 20px;
+            position: relative;
+            box-shadow: var(--punk-shadow-green);
+            transform: rotate(-0.8deg);
+        }
+
+        .music-widget-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: var(--riso-pink);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-widget-title::after {
+            content: "REC ●";
+            color: #ff3b30;
+            animation: blink 1s steps(2, start) infinite;
+        }
+
+        /* CASSETTE SVG STYLE */
+        .cassette-box {
+            background: #111;
+            border: 2px solid var(--riso-green);
+            border-radius: 6px;
+            height: 100px;
+            padding: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .cassette-label {
+            background: var(--riso-yellow);
+            color: var(--text-dark);
+            height: 35px;
+            border-radius: 3px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            padding: 2px;
+            text-align: center;
+            overflow: hidden;
+            text-transform: uppercase;
+            border: 1px solid var(--text-dark);
+        }
+
+        .cassette-wheels {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 35px;
+            position: relative;
+        }
+
+        .cassette-wheel {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 4px dashed var(--riso-pink);
+            background: #222;
+        }
+
+        .cassette-wheel.spinning {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cassette-controls {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .play-btn {
+            background: var(--riso-green);
+            color: var(--text-dark);
+            border: none;
+            padding: 8px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.1s ease;
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        .play-btn.playing {
+            background: var(--riso-pink);
+            color: var(--text-light);
+        }
+
+        .next-btn {
+            background: transparent;
+            border: 2px solid var(--riso-pink);
+            color: var(--riso-pink);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 6px;
+            text-transform: uppercase;
+            transition: all 0.1s ease;
+        }
+
+        .next-btn:hover {
+            background: var(--riso-pink);
+            color: var(--text-light);
+        }
+
+        .playlist-link {
+            text-align: center;
+        }
+
+        .playlist-link a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            color: var(--riso-green);
+            text-decoration: underline;
+        }
+
+        .playlist-link a:hover {
+            color: var(--riso-yellow);
+        }
+
+        /* HIDDEN OR SMALL SPOTIFY EMBED */
+        .spotify-container {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .spotify-container.active {
+            height: 80px;
+            border: 2px solid var(--riso-pink);
         }
 
         #spotify-embed {
-            width: 300px;
-            height: 380px;
+            width: 100%;
+            height: 80px;
             border: none;
-            border-radius: 12px;
-            margin-top: 20px;
         }
 
-        .spotify-link .btn {
-            display: inline-block;
-            padding: 12px 24px;
+        /* PROJECT GRID */
+        .projects-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-header {
+            font-family: 'GTAArtDeco', sans-serif;
+            font-size: 28px;
+            color: var(--riso-green);
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px var(--riso-pink);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::after {
+            content: "";
+            flex-grow: 1;
+            height: 3px;
+            background: repeating-linear-gradient(90deg, var(--riso-green), var(--riso-green) 10px, transparent 10px, transparent 20px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 600px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* PROJECT CARD */
+        .project-card {
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--bg-panel);
+            position: relative;
+            box-shadow: var(--punk-shadow-pink);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translate(-4px, -4px) rotate(0.5deg);
+            box-shadow: 10px 10px 0px var(--riso-pink);
+            border-color: var(--riso-pink);
+        }
+
+        .project-card-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-bottom: var(--border-width) solid var(--riso-green);
+            background: #111;
+        }
+
+        .project-card:hover .project-card-image-wrap {
+            border-color: var(--riso-pink);
+        }
+
+        .project-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.5) contrast(1.2) brightness(0.85);
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-card-image {
+            filter: grayscale(0) contrast(1.1) brightness(1);
+            transform: scale(1.05);
+        }
+
+        /* Stencil Overlay for card status */
+        .project-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--bg-dark);
+            border: 2px solid var(--riso-green);
+            color: var(--riso-green);
+            font-family: 'Share Tech Mono', monospace;
+            padding: 3px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 2;
+            box-shadow: 2px 2px 0px var(--bg-dark);
+        }
+
+        .project-card:hover .project-status {
+            border-color: var(--riso-pink);
+            color: var(--riso-pink);
+        }
+
+        .project-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-card-title {
+            font-family: 'GTAArtDeco', sans-serif;
+            font-size: 22px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0px var(--riso-green);
+            transition: color 0.2s ease;
+        }
+
+        .project-card:hover .project-card-title {
+            color: var(--riso-green);
+            text-shadow: 2px 2px 0px var(--riso-pink);
+        }
+
+        .project-card-desc {
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--paper-cream);
+            opacity: 0.85;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+        }
+
+        .project-tech {
+            color: var(--riso-yellow);
+        }
+
+        .project-action-indicator {
+            color: var(--riso-green);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-card:hover .project-action-indicator {
+            color: var(--riso-pink);
+        }
+
+        /* MODAL POPUPS */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 9, 8, 0.9);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-card {
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--bg-panel);
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 10px 10px 0px var(--riso-pink);
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) rotate(-0.5deg);
+            opacity: 1;
+        }
+
+        .modal-header {
+            border-bottom: var(--border-width) solid var(--riso-green);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #121815;
+        }
+
+        .modal-title {
+            font-family: 'GTAArtDeco', sans-serif;
+            font-size: 26px;
+            color: var(--riso-green);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px var(--riso-pink);
+        }
+
+        .modal-close {
+            background: var(--riso-pink);
+            color: var(--text-light);
+            border: 2px solid var(--bg-dark);
+            width: 32px;
+            height: 32px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: bold;
             font-size: 16px;
-            color: #fff;
-            background-color: #1DB954;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--riso-yellow);
+            color: var(--text-dark);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 25px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Polaroid / Print Frame for Screenshots */
+        .screenshot-frame {
+            background: var(--paper-cream);
+            color: var(--text-dark);
+            padding: 15px 15px 35px 15px;
+            border: 2px solid var(--bg-dark);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+            transform: rotate(-1deg);
+            position: relative;
+        }
+
+        .screenshot-frame img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            display: block;
+        }
+
+        .screenshot-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            color: #555;
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            font-weight: bold;
+        }
+
+        .screenshot-replace-note {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            color: #999;
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-weight: normal;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: var(--paper-cream);
+        }
+
+        .modal-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-family: 'Share Tech Mono', monospace;
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px dashed var(--riso-green);
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            font-size: 12px;
+        }
+
+        .meta-label {
+            color: var(--riso-pink);
+            font-weight: bold;
+        }
+
+        .meta-val {
+            color: var(--text-light);
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        @media (min-width: 500px) {
+            .modal-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ACTION BUTTONS */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
             text-decoration: none;
-            border-radius: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, box-shadow 0.3s;
-            margin-top: 15px;
+            border: var(--border-width) solid var(--riso-green);
+            background: var(--riso-green);
+            color: var(--text-dark);
+            box-shadow: 4px 4px 0px var(--bg-dark);
+            transition: all 0.2s ease;
         }
 
-        .spotify-link .btn:hover {
-            background-color: #1aa34a;
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        .btn-action:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--riso-pink);
+            background: var(--riso-green-dim);
         }
 
-        .github-corner {
-            position: absolute;
-            top: 0;
-            right: 0;
+        .btn-action.btn-secondary {
+            background: transparent;
+            color: var(--riso-pink);
+            border-color: var(--riso-pink);
         }
 
-        .github-corner svg {
-            fill: #151513;
-            color: #fff;
-            position: absolute;
-            top: 0;
-            border: 0;
-            right: 0;
+        .btn-action.btn-secondary:hover {
+            background: rgba(255, 0, 127, 0.08);
+            box-shadow: 6px 6px 0px var(--riso-green);
         }
 
-        .github-profile-pic {
+        /* SVG Icons */
+        .icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* FOOTER */
+        footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px 10px 10px 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            color: #555;
+            border-top: 1px dashed #333;
             margin-top: 20px;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+        }
+
+        footer a {
+            color: var(--riso-green);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--riso-pink);
         }
     </style>
 </head>
+
 <body>
-    <!-- GitHub Köşesi -->
-    <a href="https://github.com/K4hveci" class="github-corner" aria-label="View source on GitHub">
-        <div class="version">
-            <div class="demo version-section"><a href="#" class="github-corner" aria-label="View source on GitHub">
-                <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-                  <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-                  <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-                  <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-                </svg></a>
+
+    <div class="halftone-bg"></div>
+
+    <div class="container">
+        <!-- Floating Stickers -->
+        <div class="decal-sticker d1">WARNING: EXTREME FREQUENCY</div>
+        <div class="decal-sticker d2">PUNK'S NOT DEAD // 2026</div>
+
+        <!-- HEADER -->
+        <header>
+            <div class="header-title-container">
+                <div>
+                    <h1 class="site-title">K4HVECI // DEV</h1>
+                </div>
+                <div class="site-subtitle">RISOGRAPH_PUNK_PORTFOLIO_V2.0</div>
             </div>
-            <div class="code version-section">
-              <a href="https://github.com/K4hveci" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+        </header>
+
+        <!-- HAZARD DECORATION TAPE -->
+        <div class="hazard-tape"></div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+
+            <!-- DECORATIVE DIGITAL DASHBOARD -->
+            <div class="system-clock-widget">
+                <div class="widget-header">SYSTEM // LOG</div>
+                <div class="clock-display" id="system-time">00:00:00</div>
+                <div class="countdown-display" id="dash-countdown">000d 00h 00m 00s</div>
+                <div class="clock-label">ESTIMATED TIME TO GTA VI</div>
             </div>
-          </div>
-    </a>
 
-    <!-- Geri Sayım Başlığı ve Sayacı -->
-    <h1>Countdown to GTA VI</h1>
-    <div id="countdown">Yükleniyor...</div>
-    <button id="playButton">🎵 Start GTA VI mode</button>
-    <a href="aboutmegame/index.html" id="aboutMeButton">🃏 Play About Me Game</a>
-    <audio id="mySong" src="https://open.spotify.com/intl-tr/track/4PJEK76V3A1S0XzZJuTWh7?si=3a7918fbd2ef487d"></audio>
+            <!-- PROFILE PROFILE CARD -->
+            <div class="profile-card">
+                <div class="profile-pic-container">
+                    <img class="profile-pic" src="https://github.com/K4hveci.png" alt="K4HVECI GitHub Profile Picture">
+                    <span class="profile-stamp" id="station-stamp" style="cursor: pointer;">STATION: LIVE</span>
+                </div>
+                <h2 class="profile-name">K4HVECI</h2>
+                <p class="profile-bio">
+                    Building s**t th∀t driven purely by whim just bec∀use i c∀n. Ⓐn∀rchy in IDE.
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/K4hveci" target="_blank" class="social-btn" aria-label="GitHub Profile">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/mehmet-efe-ergin" target="_blank" class="social-btn linkedin"
+                        aria-label="LinkedIn Profile">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+                <a href="aboutmegame/index.html" class="about-game-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 8v8l7-4-7-4z" />
+                    </svg>
+                    ABOUT ME
+                </a>
+            </div>
 
+            <!-- CASSETTE MIXTAPE PLAYER -->
+            <div class="music-widget">
+                <div class="music-widget-title">RADIO TRANSMISSION</div>
+                <div class="cassette-box">
+                    <div class="cassette-label" id="cassette-label-text">GTA VI COUNTDOWN THEME</div>
+                    <div class="cassette-wheels">
+                        <div class="cassette-wheel" id="wheel-left"></div>
+                        <div class="cassette-wheel" id="wheel-right"></div>
+                    </div>
+                </div>
+                <div class="cassette-controls">
+                    <button class="play-btn" id="mixtape-play-btn">PLAY</button>
+                    <div style="font-family: 'Share Tech Mono', monospace; font-size: 11px; text-align: center; color: var(--riso-green);"
+                        id="mixtape-status-msg">
+                        DECK READY
+                    </div>
+                    <button class="next-btn" id="mixtape-next-btn" title="Next Random Track">NEXT</button>
+                </div>
+                <div class="playlist-link" style="margin-top: 15px;">
+                    <a href="https://open.spotify.com/playlist/6HumH8syTcxOGaCqXxAvuW?si=8b231762a32d4a92"
+                        target="_blank">
+                        Open Full Spotify Playlist
+                    </a>
+                </div>
+                <audio id="mySong"
+                    src="https://open.spotify.com/intl-tr/track/4PJEK76V3A1S0XzZJuTWh7?si=3a7918fbd2ef487d"></audio>
 
-    <!-- Spotify Başlığı ve Embed -->
-    <h1> or Enjoy a Random song from my Favourites</h1>
-    <iframe id="spotify-embed" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <!-- Hidden / minimized Spotify Embed for actual music plays -->
+                <div class="spotify-container" id="spotify-player-container">
+                    <iframe id="spotify-embed" loading="lazy"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+            </div>
 
-    <!-- Profil Fotoğrafı ve Spotify Linki -->
-    <img class="github-profile-pic" src="https://github.com/K4hveci.png" alt="GitHub Profile Picture">
-    <div class="spotify-link">
-        <a href="https://open.spotify.com/playlist/6HumH8syTcxOGaCqXxAvuW?si=8b231762a32d4a92" target="_blank" class="btn">Open Full Spotify Playlist</a>
+        </div>
+
+        <!-- MAIN PROJECTS LIST -->
+        <main class="projects-section">
+            <h2 class="section-header">PROJECTS // ARCHIVES</h2>
+
+            <div class="projects-grid">
+
+                <!-- CARD 1: GTA VI COUNTDOWN -->
+                <article class="project-card" data-project-id="gta6">
+                    <div class="project-card-image-wrap">
+                        <span class="project-status">LAUNCHED</span>
+                        <img class="project-card-image" src="photos/gta6_banner.png" alt="GTA VI Countdown banner">
+                    </div>
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">GTA VI Countdown</h3>
+                        <p class="project-card-desc">
+                            A countdown tracking page for GTA VI, complete with visual backdrops, custom playlist
+                            tracks, and real-time ticking counters.
+                        </p>
+                        <div class="project-card-footer">
+                            <span class="project-tech">HTML // CSS // JS</span>
+                            <span class="project-action-indicator">DETAILS →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 3: DÖNER PALACE -->
+                <article class="project-card" data-project-id="doner">
+                    <div class="project-card-image-wrap">
+                        <span class="project-status">PAGES</span>
+                        <img class="project-card-image" src="photos/doner_palace_banner.png"
+                            alt="Döner Palace Game banner">
+                    </div>
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Döner Palace Game</h3>
+                        <p class="project-card-desc">
+                            Step into the shoes of a Döner Kebab master! Prep ingredients, serve hungry customers, and
+                            scale your kebab shop in this simulation game.
+                        </p>
+                        <div class="project-card-footer">
+                            <span class="project-tech">JS ENGINE // UI // STYLING</span>
+                            <span class="project-action-indicator">PLAY →</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 4: PORTAKAL HUNTER -->
+                <article class="project-card" data-project-id="portakal">
+                    <div class="project-card-image-wrap">
+                        <span class="project-status">PAGES</span>
+                        <img class="project-card-image" src="photos/portakal_hunter_banner.png"
+                            alt="Portakal Hunter game banner">
+                    </div>
+                    <div class="project-card-content">
+                        <h3 class="project-card-title">Portakal Hunter</h3>
+                        <p class="project-card-desc">
+                            A fast-paced arcade shooter where your targets are juicy oranges. Shoot target boards, split
+                            citrus, and rack up combos.
+                        </p>
+                        <div class="project-card-footer">
+                            <span class="project-tech">CSS3 // KEYFRAMES // JS</span>
+                            <span class="project-action-indicator">PLAY →</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            DESIGNED IN ANKARA. POWERED BY <a href="https://github.com/K4hveci" target="_blank">K4HVECI</a> &copy; 2026
+        </footer>
+
     </div>
 
-    <!-- JavaScript: Geri Sayım ve Spotify Şarkı Seçimi -->
+    <!-- MODAL MARKUP -->
+    <div class="modal-overlay" id="project-modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-project-title">PROJECT_TITLE</h3>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Polaroid Frame -->
+                <div class="screenshot-frame">
+                    <img id="modal-project-image" src="" alt="Project Visual Preview">
+                    <span class="screenshot-label" id="modal-project-label">PHOTO ARCHIVE // DEV_FILE_01</span>
+                    <span class="screenshot-replace-note">[ Replace this banner in /photos/ ]</span>
+                </div>
+
+                <p class="modal-desc" id="modal-project-desc">
+                    Detailed project information will load here dynamically on selection.
+                </p>
+
+                <div class="modal-meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">TECH_STACK: </span>
+                        <span class="meta-val" id="modal-project-tech">HTML / CSS / JS</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">STATUS: </span>
+                        <span class="meta-val" id="modal-project-status">STABLE</span>
+                    </div>
+                    <div class="meta-item" style="grid-column: 1 / -1">
+                        <span class="meta-label">DEVELOPMENT: </span>
+                        <span class="meta-val" id="modal-project-type">Solo Creator</span>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="" target="_blank" class="btn-action" id="modal-action-visit">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 8v8l7-4-7-4z" />
+                        </svg>
+                        Launch Application
+                    </a>
+                    <a href="" target="_blank" class="btn-action btn-secondary" id="modal-action-code">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        Inspect Code
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- DATA & LOGIC SCRIPT -->
     <script>
-        // Geri Sayım
-        const countdownElement = document.getElementById("countdown");
-        const targetDate = new Date("2026-11-19T00:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                countdownElement.innerHTML = "Süre doldu!";
-                return;
+        // PROJECT DATABASE
+        const projectData = {
+            gta6: {
+                title: "GTA VI Countdown",
+                desc: "A bespoke tracking page ticking down the exact seconds left until Rockstar Games' highly anticipated GTA VI release. Features beautiful neon-glowing typography loaded using the custom GTA Art Deco typeface, random playlist selectors to play theme music, and styled dynamic elements designed to match the Vice City atmosphere.",
+                image: "photos/gta6_banner.png",
+                label: "PHOTO ARCHIVE // VICE_CITY_01",
+                tech: "HTML5 / CSS / Vanilla JS",
+                status: "Deployed (Live)",
+                type: "Solo Project (Countdown Tool)",
+                visitUrl: "gta6.html",
+                codeUrl: "https://github.com/K4hveci/K4hveci.github.io/blob/main/gta6.html"
+            },
+            aboutme: {
+                title: "About Me Card Game",
+                desc: "A stylized card game interface serving as an interactive resume. Players can draw and play digital cards that display details about my skills, framework proficiencies, work philosophy, and download a copy of my PDF resume directly from the card deck.",
+                image: "photos/about_me_banner.png",
+                label: "PHOTO ARCHIVE // CARD_GAME_02",
+                tech: "HTML Canvas / CSS / Javascript",
+                status: "Deployed (Live)",
+                type: "Solo Project (Personal Game)",
+                visitUrl: "aboutmegame/index.html",
+                codeUrl: "https://github.com/K4hveci/K4hveci.github.io/tree/main/aboutmegame"
+            },
+            doner: {
+                title: "Döner Palace Game",
+                desc: "A web simulator putting you in charge of a bustling Turkish Döner Kebab Palace. Manage the high-stakes grill, chop meat, prep wraps, serve hungry customers before their patience runs out, and purchase upgrades to automate your shop and maximize profit.",
+                image: "photos/doner_palace_banner.png",
+                label: "PHOTO ARCHIVE // KEBAB_SIM_03",
+                tech: "Vanilla JS / CSS Grid / Game Loop",
+                status: "Deployed (GitHub Pages)",
+                type: "Solo Project (GitHub Pages App)",
+                visitUrl: "https://k4hveci.github.io/doner-palace",
+                codeUrl: "https://github.com/K4hveci/doner-palace"
+            },
+            portakal: {
+                title: "Portakal Hunter",
+                desc: "A high-octane retro arcade shooting game where the players target flying target-boards and juicy oranges. Hit targets successively to trigger juice splatters, stack score multiplier combos, and compete for the high score in an immersive browser-based arcade cabinet.",
+                image: "photos/portakal_hunter_banner.png",
+                label: "PHOTO ARCHIVE // ORANGE_SHOOT_04",
+                tech: "CSS Keyframes / HTML Audio / JS Engine",
+                status: "Deployed (GitHub Pages)",
+                type: "Solo Project (GitHub Pages App)",
+                visitUrl: "https://k4hveci.github.io/portakal-hunter",
+                codeUrl: "https://github.com/K4hveci/portakal-hunter"
             }
+        };
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // MODAL LOGIC
+        const overlay = document.getElementById("project-modal-overlay");
+        const modalTitle = document.getElementById("modal-project-title");
+        const modalImage = document.getElementById("modal-project-image");
+        const modalLabel = document.getElementById("modal-project-label");
+        const modalDesc = document.getElementById("modal-project-desc");
+        const modalTech = document.getElementById("modal-project-tech");
+        const modalStatus = document.getElementById("modal-project-status");
+        const modalType = document.getElementById("modal-project-type");
+        const btnVisit = document.getElementById("modal-action-visit");
+        const btnCode = document.getElementById("modal-action-code");
+        const closeBtn = document.getElementById("modal-close-btn");
 
-            countdownElement.innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
-        }
+        document.querySelectorAll(".project-card").forEach(card => {
+            card.addEventListener("click", () => {
+                const id = card.getAttribute("data-project-id");
+                const data = projectData[id];
+                if (data) {
+                    modalTitle.textContent = data.title.toUpperCase();
+                    modalImage.src = data.image;
+                    modalImage.alt = `${data.title} preview image`;
+                    modalLabel.textContent = data.label;
+                    modalDesc.textContent = data.desc;
+                    modalTech.textContent = data.tech;
+                    modalStatus.textContent = data.status;
+                    modalType.textContent = data.type;
+                    btnVisit.href = data.visitUrl;
+                    btnCode.href = data.codeUrl;
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+                    overlay.classList.add("active");
+                }
+            });
+        });
 
-        // Rastgele Spotify Parçası
+        const closeModal = () => {
+            overlay.classList.remove("active");
+        };
+
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // CASSETTE SPOTIFY DECK LOGIC
         const tracks = [
             "https://open.spotify.com/embed/track/6UaQ1vxrYGTQkghREuU1o2?si=acdacbde007f4338",
             "https://open.spotify.com/embed/track/0uAkm1iQLrzweZ4U1iXy6w?si=e73bc783065643e6",
@@ -209,27 +1422,172 @@
             "https://open.spotify.com/embed/track/4zTOUtukd52LzS3bLWwzGc?si=5feb0c5cfda74987",
             "https://open.spotify.com/embed/track/03sf6gnuqZNE9sGrRi8WAc?si=ab940f57572d4b7d",
             "https://open.spotify.com/embed/track/6VDbIjLQx6DnRZ3lpmv9sy?si=646b14e4bb66409a",
-            "https://open.spotify.com/embed/track/1suQvk6hNvqzpekicmvYOO?si=e694b687240249de"
+            "https://open.spotify.com/embed/track/1suQvk6hNvqzpekicmvYOO?si=e694b687240249de",
+            "https://open.spotify.com/embed/track/0RoQ5sk1Z9PH2xki3gv5hO?utm_source=generator"
         ];
 
-        function getRandomTrack() {
-            return tracks[Math.floor(Math.random() * tracks.length)];
+        let currentTrackIdx = 0;
+        let isPlaying = false;
+
+        const mixtapePlayBtn = document.getElementById("mixtape-play-btn");
+        const mixtapeNextBtn = document.getElementById("mixtape-next-btn");
+        const mixtapeStatus = document.getElementById("mixtape-status-msg");
+        const wheelLeft = document.getElementById("wheel-left");
+        const wheelRight = document.getElementById("wheel-right");
+        const spotifyContainer = document.getElementById("spotify-player-container");
+        const spotifyEmbed = document.getElementById("spotify-embed");
+        const cassetteLabelText = document.getElementById("cassette-label-text");
+
+        // Prepare initial playlist selection
+        spotifyEmbed.src = tracks[currentTrackIdx];
+
+        mixtapePlayBtn.addEventListener("click", () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                mixtapePlayBtn.textContent = "STOP";
+                mixtapePlayBtn.classList.add("playing");
+                mixtapeStatus.textContent = "PLAYING TAPE";
+                wheelLeft.classList.add("spinning");
+                wheelRight.classList.add("spinning");
+                spotifyContainer.classList.add("active");
+
+                // If playing for the first time, try to launch the native audio player or play Spotify
+                const audio = document.getElementById("mySong");
+                audio.play().catch(e => {
+                    console.log("Local audio blocked by browser autoplay policy - Spotify player will stream.");
+                });
+            } else {
+                mixtapePlayBtn.textContent = "PLAY";
+                mixtapePlayBtn.classList.remove("playing");
+                mixtapeStatus.textContent = "DECK STOPPED";
+                wheelLeft.classList.remove("spinning");
+                wheelRight.classList.remove("spinning");
+                spotifyContainer.classList.remove("active");
+
+                const audio = document.getElementById("mySong");
+                audio.pause();
+            }
+        });
+
+        mixtapeNextBtn.addEventListener("click", () => {
+            currentTrackIdx = (currentTrackIdx + 1) % tracks.length;
+            spotifyEmbed.src = tracks[currentTrackIdx];
+            cassetteLabelText.textContent = `PUNK TAPE MIXTAPE #${currentTrackIdx + 1}`;
+            mixtapeStatus.textContent = "TRACK LOADED";
+
+            if (!isPlaying) {
+                // Auto trigger play on track shift for responsive feel
+                mixtapePlayBtn.click();
+            }
+        });
+
+        // SYSTEM CLOCK WIDGET LOGIC
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const clockEl = document.getElementById('system-time');
+            if (clockEl) clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        function updateCountdown() {
+            // GTA VI Target Date: Nov 19, 2026
+            const target = new Date("2026-11-19T00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+            const countEl = document.getElementById('dash-countdown');
+            if (!countEl) return;
+
+            if (diff <= 0) {
+                countEl.textContent = "LAUNCHED!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            countEl.textContent =
+                `${days}D ${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M ${String(seconds).padStart(2, '0')}S`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // EASTER EGG CORRUPTION TRIGGER
+        let badgeClickCount = 0;
+        const stationBadge = document.getElementById("station-stamp");
+        if (stationBadge) {
+            stationBadge.addEventListener("click", () => {
+                badgeClickCount++;
+                stationBadge.style.transform = `rotate(${Math.random() * 20 - 10}deg) scale(1.15)`;
+                setTimeout(() => {
+                    stationBadge.style.transform = 'rotate(-10deg) scale(1)';
+                }, 150);
+
+                if (badgeClickCount >= 5) {
+                    badgeClickCount = 0;
+                    triggerPunkOverload();
+                } else {
+                    const originalText = stationBadge.textContent;
+                    stationBadge.textContent = `WARN: ${5 - badgeClickCount} LCK`;
+                    stationBadge.style.background = "var(--riso-pink)";
+                    stationBadge.style.color = "white";
+                    setTimeout(() => {
+                        stationBadge.textContent = originalText;
+                        stationBadge.style.background = "var(--riso-yellow)";
+                        stationBadge.style.color = "var(--text-dark)";
+                    }, 800);
+                }
+            });
         }
 
-        document.getElementById("spotify-embed").src = getRandomTrack();
+        function triggerPunkOverload() {
+            document.body.classList.toggle("glitch-active");
+            playGlitchSynth();
 
-        // Rastgele Arka Plan Rengi
-        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-        document.body.style.backgroundColor = randomColor;
+            const alertBanner = document.createElement("div");
+            alertBanner.className = "critical-alert-banner";
+            alertBanner.textContent = "PUNK OVERLOAD: SITE INTERACTION CORRUPTED";
+            document.body.appendChild(alertBanner);
 
-        document.getElementById("playButton").addEventListener("click", function() {
-    
-            const audio = document.getElementById("mySong");
-            audio.play().catch(e => {
-            alert("Şarkı çalınamadı: Tarayıcı izin vermedi veya dosya bulunamadı.");
-            console.error(e);
-            });
-        });
+            setTimeout(() => {
+                alertBanner.classList.add("fade-out");
+                setTimeout(() => {
+                    alertBanner.remove();
+                }, 500);
+            }, 3000);
+        }
+
+        function playGlitchSynth() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const playBeep = (freq, startTime, duration, type) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, startTime);
+                    gain.gain.setValueAtTime(0.08, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + duration);
+                };
+                const now = audioCtx.currentTime;
+                playBeep(180, now, 0.1, 'sawtooth');
+                playBeep(290, now + 0.08, 0.1, 'sawtooth');
+                playBeep(380, now + 0.16, 0.15, 'sawtooth');
+                playBeep(580, now + 0.24, 0.2, 'square');
+                playBeep(780, now + 0.36, 0.35, 'sawtooth');
+            } catch (e) {
+                console.log("AudioContext blocked or unsupported", e);
+            }
+        }
     </script>
 </body>
+
 </html>
